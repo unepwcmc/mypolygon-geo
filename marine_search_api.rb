@@ -12,14 +12,19 @@ post '/marine_search/:name' do
 
   if  !data.blank? && data.kind_of?(Array)
     begin
-      result_sets = [
-          "coral",
-          #"seagrass",
-          #"mangrove"
-      ]
-
-      if !result_sets.include?(params[:name])
-        raise "requested dataset does not exist"
+      case params[:name]
+        when "coral"
+          table_name = "coral_dev"
+          srid = 4326
+        when "mangroves"
+          table_name = "mangrove_test"
+          # must figure out how to convert this...
+          # ST_SetSRID/ST_Transform bump into the table's SRID constraint.
+          srid = -1
+        else
+          msg = "requested dataset does not exist: " + params[:name]
+          puts msg
+          raise msg
       end
 
       conn = PGconn.open(:dbname => 'coral_distribution_2', :user => 'postgres', :password => '')
@@ -32,14 +37,13 @@ post '/marine_search/:name' do
         arr = []
 
         #query the data
-        # 4326 = SRID
         result = conn.exec("
         SELECT
           ST_Area(ST_Intersection(
             ST_Union(the_geom),
-            ST_GeomFromText('#{d["the_geom"]}',4326))) as overlapped_area
-        FROM #{params[:name]}_dev
-        WHERE ST_Intersects(ST_GeomFromText('#{d["the_geom"]}',4326), the_geom)"
+            ST_GeomFromText('#{d["the_geom"]}', #{srid}))) as overlapped_area
+        FROM #{table_name}
+        WHERE ST_Intersects(ST_GeomFromText('#{d["the_geom"]}', #{srid}), the_geom)"
         )
         #ST_Intersects to get the geometries that touch it
         #ST_Union to merge them into a single shape
