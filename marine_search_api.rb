@@ -67,6 +67,8 @@ post '/marine_search/:name' do
       msg = "An error occurred during the processing of your request #{e}"
       puts msg
       json = {:error => msg}
+    ensure
+      conn.close if conn
     end
   end
 
