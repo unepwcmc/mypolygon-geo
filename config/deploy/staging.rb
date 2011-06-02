@@ -13,7 +13,7 @@ set :user , "rails"
 set(:deploy_to) { File.join("", "home", user, application) }
 
 set :scm, :git
-set :repository, "git@github.com:unepwcmc/Voluntary-REDD--database.git"
+set :repository, "git@github.com:unepwcmc/intranet.git"
 set :branch, "master"
 set :scm_username, "unepwcmc-read"
 set :scm_password, "conservation1"
