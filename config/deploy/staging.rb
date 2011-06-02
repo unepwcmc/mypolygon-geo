@@ -1,3 +1,5 @@
+require 'bundler/capistrano'
+
 set :application, "mypolygon-geo"
 set :domain, "unepwcmc-005.vm.brightbox.net"
 ## List of servers
