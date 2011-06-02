@@ -4,7 +4,10 @@ require 'brightbox/recipes'
 
 set :application, "mypolygon-geo"
 set :domain, "unepwcmc-005.vm.brightbox.net"
-role :app, :web, :db, "unepwcmc-005.vm.brightbox.net", :primary => true
+## List of servers
+role :app, "unepwcmc-005.vm.brightbox.net"
+role :web, "unepwcmc-005.vm.brightbox.net"
+role :db, 'unepwcmc-005.vm.brightbox.net', :primary => true
 
 set :user , "rails"
 set(:deploy_to) { File.join("", "home", user, application) }
