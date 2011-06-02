@@ -1,7 +1,3 @@
-## Generated with 'brightbox' on 2011-05-11 16:48:20 +0100
-gem 'brightbox', '>=2.3.8'
-require 'brightbox/recipes'
-
 set :application, "mypolygon-geo"
 set :domain, "unepwcmc-005.vm.brightbox.net"
 ## List of servers
