@@ -29,3 +29,4 @@ end
 
 set :generate_webserver_config, false
 set :skip_db_setup, true
+set :skip_rake_tasks, true
