@@ -14,10 +14,10 @@ post '/marine_search/:name' do
     begin
       case params[:name]
         when "coral"
-          table_name = "coral_dev"
+          table_name = "coral"
           srid = 4326
         when "mangroves"
-          table_name = "mangrove_test"
+          table_name = "mangrove"
           # must figure out how to convert this...
           # ST_SetSRID/ST_Transform bump into the table's SRID constraint.
           srid = -1
@@ -27,7 +27,7 @@ post '/marine_search/:name' do
           raise msg
       end
 
-      conn = PGconn.open(:dbname => 'coral_distribution_2', :user => 'postgres', :password => '')
+      conn = PGconn.open(:dbname => 'mypolygon_data', :user => 'postgres', :password => '')
 
       data.each do |d|
         if d["id"].blank? || d["the_geom"].blank?
