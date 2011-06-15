@@ -20,7 +20,7 @@ post '/marine_search/:name' do
           table_name = "mangrove"
           # must figure out how to convert this...
           # ST_SetSRID/ST_Transform bump into the table's SRID constraint.
-          srid = -1
+          srid = 4326
         else
           msg = "requested dataset does not exist: " + params[:name]
           puts msg
@@ -35,16 +35,17 @@ post '/marine_search/:name' do
         end
 
         arr = []
-
-        #query the data
-        result = conn.exec("
+        sql = "
         SELECT
           ST_Area(ST_Intersection(
             ST_Union(the_geom),
             ST_GeomFromText('#{d["the_geom"]}', #{srid}))) as overlapped_area
         FROM #{table_name}
         WHERE ST_Intersects(ST_GeomFromText('#{d["the_geom"]}', #{srid}), the_geom)"
-        )
+        
+        puts sql
+        #query the data
+        result = conn.exec(sql)
         #ST_Intersects to get the geometries that touch it
         #ST_Union to merge them into a single shape
         #ST_Intersection to find the overlap
