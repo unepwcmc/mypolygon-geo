@@ -1,1 +1,2 @@
 test -e pid && cat pid | xargs kill
+true
