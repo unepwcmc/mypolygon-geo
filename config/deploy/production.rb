@@ -22,8 +22,15 @@ set :scm_verbose, true
 default_run_options[:pty] = true
 
 namespace :deploy do
+  task :start, :roles => :app do
+    run "cd #{release_path} && ./start"
+  end
+  task :stop, :roles => :app do
+    run "cd #{release_path} && ./stop"
+  end
   task :restart, :roles => :app do
-    run "mkdir -p #{release_path}/tmp && touch #{release_path}/tmp/restart.txt"
+    deploy.stop
+    deploy.start
   end
 end
 

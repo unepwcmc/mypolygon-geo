@@ -1,2 +1,2 @@
-ruby -rubygems marine_search_api.rb &
+nohup ruby -rubygems marine_search_api.rb &
 echo $! > pid
