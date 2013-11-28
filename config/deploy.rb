@@ -5,7 +5,7 @@ gem 'brightbox', '>=2.3.9'
 require 'brightbox/recipes'
 require 'brightbox/passenger'
 
-equire 'rvm/capistrano'
+require 'rvm/capistrano'
 set :rvm_ruby_string, '1.9.3'
 
 set :generate_webserver_config, false
