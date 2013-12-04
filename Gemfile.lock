@@ -21,6 +21,9 @@ GEM
       net-ssh (>= 1.99.1)
     pg (0.10.1)
     rack (1.2.1)
+    rake (10.1.0)
+    rvm-capistrano (1.4.1)
+      capistrano (>= 2.0.0)
     sinatra (1.2.0)
       rack (~> 1.1)
       tilt (>= 1.2.2, < 2.0)
@@ -35,4 +38,6 @@ DEPENDENCIES
   capistrano-ext
   json
   pg
+  rake
+  rvm-capistrano
   sinatra
