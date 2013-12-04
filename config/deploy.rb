@@ -22,7 +22,7 @@ set :default_stage, 'staging'
 
 set :scm, :git
 set :repository, "git@github.com:unepwcmc/mypolygon-geo.git"
-set :branch, "master"
+set :branch, "NewBrightboxDeploy"
 set :scm_username, "unepwcmc-read"
 set :deploy_via, :remote_cache
 
