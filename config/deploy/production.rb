@@ -1,11 +1,11 @@
 set :rails_env, "production"
 # Primary domain name of your application. Used in the Apache configs
-set :domain, "unepwcmc-014.vm.brightbox.net"
+set :domain, "unepwcmc-013.vm.brightbox.net"
 ## List of servers
-server "unepwcmc-042.vm.brightbox.net", :app, :web, :db, :primary => true
+server "unepwcmc-013.vm.brightbox.net", :app, :web, :db, :primary => true
 
 set :application, "mypolygon-geo"
-set :server_name, "mypolygon-geo.unepwcmc-014.vm.brightbox.net"
+set :server_name, "mypolygon-geo.unepwcmc-013.vm.brightbox.net"
 set :sudo_user, "rails"
 set :app_port, "80" 
 
@@ -17,7 +17,7 @@ server {
   listen 80;
   
   client_max_body_size 4G;
-  server_name #{application}.unepwcmc-024.vm.brightbox.net #{application}.sw01.matx.info;
+  server_name #{application}.unepwcmc-013.vm.brightbox.net #{application}.sw01.matx.info;
   keepalive_timeout 5;
   root #{deploy_to}/public;
   passenger_enabled on;
